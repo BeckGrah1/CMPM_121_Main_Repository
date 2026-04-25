@@ -13,7 +13,6 @@ public class EnemySpawner : MonoBehaviour
     public GameObject button;
     public GameObject enemy;
     public SpawnPoint[] SpawnPoints;
-    public TextAsset enemyJSON;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,18 +63,21 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnZombie()
     {
+        string enemyName = "zombie";
         SpawnPoint spawn_point = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
         Vector2 offset = Random.insideUnitCircle * 1.8f;
                 
         Vector3 initial_position = spawn_point.transform.position + new Vector3(offset.x, offset.y, 0);
         GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
 
-        new_enemy.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.enemySpriteManager.Get(0);
+        EnemyData enemyData = EnemyDataManager.Instance.GetEnemyByName(enemyName);
+        // changed to take sprite data from enemy JSON
+        new_enemy.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.enemySpriteManager.Get(enemyData.sprite);
         EnemyController en = new_enemy.GetComponent<EnemyController>();
-        // need to give enemy controller data from JSON file
-
-        en.hp = new Hittable(50, Hittable.Team.MONSTERS, new_enemy);
-        en.speed = 10;
+        // changed to get speed and hp from enemy data. Will NOT work for RPN strings without further work
+        en.hp = new Hittable(enemyData.hp, Hittable.Team.MONSTERS, new_enemy);
+        en.speed = enemyData.speed;
+        en.damage = enemyData.damage;
         GameManager.Instance.AddEnemy(new_enemy);
         yield return new WaitForSeconds(0.5f);
     }

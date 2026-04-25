@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour
 
     public Transform target;
     public int speed;
+    public int damage;
     public Hittable hp;
     public HealthBar healthui;
     public bool dead;
@@ -37,7 +38,8 @@ public class EnemyController : MonoBehaviour
         if (last_attack + 2 < Time.time)
         {
             last_attack = Time.time;
-            target.gameObject.GetComponent<PlayerController>().hp.Damage(new Damage(5, Damage.Type.PHYSICAL));
+            // updated to take damage number from enemy JSON, will need work to make damage scale with wave number using RPN string
+            target.gameObject.GetComponent<PlayerController>().hp.Damage(new Damage(damage, Damage.Type.PHYSICAL));
         }
     }
 
