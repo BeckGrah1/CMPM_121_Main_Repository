@@ -39,6 +39,19 @@ public class LevelDataManager : MonoBehaviour
         Debug.Log("Level name / difficulty " + name + "not found in JSON file");
         return null;
     }
+
+    public SpawnEntry GetSpawnByNameAndLevel(string name, LevelData levelData)
+    {
+        foreach (SpawnEntry spawnEntry in levelData.spawns)
+        {
+            if (spawnEntry.enemy == name)
+            {
+                return spawnEntry;
+            }
+        }
+        Debug.Log("Spawn entry " + name + "not found in JSON file");
+        return null;
+    }
 }
 
 [System.Serializable]
