@@ -9,6 +9,7 @@ using System.Linq;
 
 using RPNEvaluator;
 using System.Data;
+using TMPro;
 
 public enum Difficulty
 {
@@ -70,33 +71,52 @@ public class EnemySpawner : MonoBehaviour
         }
         GameManager.Instance.state = GameManager.GameState.INWAVE;
         // new stuff here
+        List<Coroutine> spawnCoroutines = new List<Coroutine>();
         foreach (SpawnEntry spawnEntry in levelData.spawns)
         {
-            StartCoroutine(SpawnEnemyType(spawnEntry, waveNum));
+            Coroutine coroutine = StartCoroutine(SpawnEnemyType(spawnEntry, waveNum));
+            spawnCoroutines.Add(coroutine);
         }
-        
+
+        foreach (Coroutine coroutine in spawnCoroutines)
+        {
+            yield return coroutine;
+        }
 
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
-        GameManager.Instance.state = GameManager.GameState.WAVEEND;
         waveNum++;
+        GameManager.Instance.state = GameManager.GameState.WAVEEND;
     }
     IEnumerator SpawnEnemyType(SpawnEntry spawnEntry, int waveNum)
     {
         EnemyData enemyData = EnemyDataManager.Instance.GetEnemyByName(spawnEntry.enemy);
         RPNReturns rpnResults = CalculateSpawnExpressions.Calculate(spawnEntry, enemyData, waveNum);
-        
+        float waitTime = 2;
+        Debug.Log($"=== Spawning {spawnEntry.enemy} ===");
+        Debug.Log($"Count from RPN: {rpnResults.count}");
+        Debug.Log($"HP: {rpnResults.hp}, Speed: {rpnResults.speed}, Damage: {rpnResults.damage}");
+        Debug.Log($"Wave number: {waveNum}");
+        Debug.Log($"Raw count string: {spawnEntry.count}");
+        if (float.TryParse(spawnEntry.delay, out float result))
+        {
+            waitTime = result;
+        }
+        for (int i = 0; i < rpnResults.count; i++)
+        {
+            SpawnPoint spawnPoint = GetRandomSpawnPoint(spawnEntry.location);
+            SpawnEnemy(enemyData, rpnResults, spawnPoint);
+            yield return new WaitForSeconds(waitTime);
+        }
 
     }
 
-    IEnumerator SpawnEnemy(string enemyName, RPNReturns rpnResults)
+    void SpawnEnemy(EnemyData enemyData, RPNReturns rpnResults, SpawnPoint spawnPoint)
     {
-        SpawnPoint spawn_point = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
         Vector2 offset = Random.insideUnitCircle * 1.8f;
                 
-        Vector3 initial_position = spawn_point.transform.position + new Vector3(offset.x, offset.y, 0);
+        Vector3 initial_position = spawnPoint.transform.position + new Vector3(offset.x, offset.y, 0);
         GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
 
-        EnemyData enemyData = EnemyDataManager.Instance.GetEnemyByName(enemyName);
         // changed to take sprite data from enemy JSON
         new_enemy.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.enemySpriteManager.Get(enemyData.sprite);
         EnemyController en = new_enemy.GetComponent<EnemyController>();
@@ -105,6 +125,31 @@ public class EnemySpawner : MonoBehaviour
         en.speed = rpnResults.speed;
         en.damage = rpnResults.damage;
         GameManager.Instance.AddEnemy(new_enemy);
-        yield return new WaitForSeconds(0.5f);
+    }
+
+    // currently only takes random spawns, however could easily be modified to take specific spawn points if needed
+    SpawnPoint GetRandomSpawnPoint(string locationFilter)
+    {
+        if (locationFilter == "random")
+        {
+            return SpawnPoints[Random.Range(0, SpawnPoints.Length)];
+        }
+        if (locationFilter == "random red")
+        {
+            SpawnPoint[] redSpawnPoints = SpawnPoints.Where(sp => sp.kind == SpawnPoint.SpawnName.RED).ToArray();
+            return redSpawnPoints[Random.Range(0, redSpawnPoints.Length)];
+        }
+        if (locationFilter == "random bone")
+        {
+            SpawnPoint[] boneSpawnPoints = SpawnPoints.Where(sp => sp.kind == SpawnPoint.SpawnName.BONE).ToArray();
+            return boneSpawnPoints[Random.Range(0, boneSpawnPoints.Length)];
+        }
+        if (locationFilter == "random green")
+        {
+            SpawnPoint[] greenSpawnPoints = SpawnPoints.Where(sp => sp.kind == SpawnPoint.SpawnName.GREEN).ToArray();
+            return greenSpawnPoints[Random.Range(0, greenSpawnPoints.Length)];
+        }
+        Debug.Log("spawn point filter " + locationFilter + " not found");
+        return null;
     }
 }

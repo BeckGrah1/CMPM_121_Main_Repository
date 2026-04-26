@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class LevelData
 {
-    public string difficulty;
-    public int waveCount;
+    public string name;
+    public int waves;
     public List<SpawnEntry> spawns;
 }
 

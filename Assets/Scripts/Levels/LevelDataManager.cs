@@ -29,9 +29,9 @@ public class LevelDataManager : MonoBehaviour
 
     public LevelData GetDifficultyByName(string name)
     {
-        foreach (LevelData level in levelList.enemies)
+        foreach (LevelData level in levelList.levels)
         {
-            if (level.difficulty == name)
+            if (level.name == name)
             {
                 return level;
             }
@@ -57,5 +57,5 @@ public class LevelDataManager : MonoBehaviour
 [System.Serializable]
 public class LevelList
 {
-    public LevelData[] enemies;
+    public LevelData[] levels;
 }

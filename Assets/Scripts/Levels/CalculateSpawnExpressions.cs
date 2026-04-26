@@ -2,7 +2,7 @@ using RPNEvaluator;
 using System.Collections.Generic;
 using UnityEngine;
 
-// calculates the necessary RPN expressions, gives back 
+// calculates the necessary RPN expressions, gives back a class with the new values
 public class CalculateSpawnExpressions : MonoBehaviour
 {
     public static RPNReturns Calculate(SpawnEntry spawnEntry, EnemyData enemyData, int waveNum)
@@ -12,7 +12,7 @@ public class CalculateSpawnExpressions : MonoBehaviour
         {
             {"wave", waveNum },
         };
-        int spawnCount = RPNEvaluator.RPNEvaluator.Evaluate(spawnEntry.count, dict);
+        returns.count = RPNEvaluator.RPNEvaluator.Evaluate(spawnEntry.count, dict);
         if (spawnEntry.hp != null)
         {
             dict = new Dictionary<string, int>
