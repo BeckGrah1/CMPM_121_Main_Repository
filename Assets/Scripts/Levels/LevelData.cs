@@ -20,4 +20,5 @@ public class SpawnEntry
     public List<int> sequence;
     public string location;
     public string damage;
+    public string speed;
 }
