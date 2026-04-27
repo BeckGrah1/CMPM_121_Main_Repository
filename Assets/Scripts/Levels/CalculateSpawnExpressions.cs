@@ -7,6 +7,7 @@ public class CalculateSpawnExpressions : MonoBehaviour
 {
     public static RPNReturns Calculate(SpawnEntry spawnEntry, EnemyData enemyData, int waveNum)
     {
+        Debug.Log("wave num: " + waveNum);
         RPNReturns returns = new RPNReturns();
         Dictionary<string, int> dict = new Dictionary<string, int>
         {

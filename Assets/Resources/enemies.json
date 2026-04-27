@@ -20,6 +20,13 @@
             "hp": 30,
             "speed": 7,
             "damage": 10
+        },
+        {
+            "name": "fire",
+            "sprite": 45,
+            "hp": 15,
+            "speed": 12,
+            "damage": 20
         }
     ]
 }
