@@ -56422,6 +56422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GFXManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3904239589605202971, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
+      propertyPath: enemyJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: 0113e2a27a7ef2f40b62cf96d0d02f54, type: 3}
     - target: {fileID: 5489274343212671176, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2238593
@@ -56462,6 +56466,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7902749510839474386, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
+      propertyPath: levelJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: b7707569169386540b030d78bced44d8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
