@@ -40,6 +40,11 @@ public class LevelDataManager : MonoBehaviour
         return null;
     }
 
+    public LevelData[] GetAllLevels()
+    {
+        return levelList.levels;
+    }
+
     public SpawnEntry GetSpawnByNameAndLevel(string name, LevelData levelData)
     {
         foreach (SpawnEntry spawnEntry in levelData.spawns)
