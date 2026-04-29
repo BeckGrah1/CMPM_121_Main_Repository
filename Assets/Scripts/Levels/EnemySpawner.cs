@@ -31,10 +31,18 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameObject selector = Instantiate(button, level_selector.transform);
-        selector.transform.localPosition = new Vector3(0, 130);
-        selector.GetComponent<MenuSelectorController>().spawner = this;
-        selector.GetComponent<MenuSelectorController>().SetLevel("Start");
+        // LevelDataManager.Awake() will ensure Instance exists before this Start() runs- all Awake() must run before any Start()
+        LevelData[] levels = LevelDataManager.Instance.GetAllLevels();
+        
+        // loop over the list of levels as read in from the json
+        // add a button for each level, 60px down from the last
+        for (int i = 0; i < levels.Length; i++)
+        {
+            GameObject selector = Instantiate(button, level_selector.transform);
+            selector.transform.localPosition = new Vector3(0, 130 - (i * 60));
+            selector.GetComponent<MenuSelectorController>().spawner = this;
+            selector.GetComponent<MenuSelectorController>().SetLevel(levels[i].name);
+        }
     }
 
     // Update is called once per frame
@@ -49,9 +57,7 @@ public class EnemySpawner : MonoBehaviour
         // this is not nice: we should not have to be required to tell the player directly that the level is starting
         GameManager.Instance.player.GetComponent<PlayerController>().StartLevel();
         StartCoroutine(SpawnWave());
-        // difficulty should be set by player when selecting level, for now I'll just set it to easy
-        difficulty = Difficulty.Easy;
-        levelData = LevelDataManager.Instance.GetDifficultyByName(difficulty.ToString());
+        levelData = LevelDataManager.Instance.GetDifficultyByName(levelname);
     }
 
     public void NextWave()
