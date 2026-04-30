@@ -3,11 +3,11 @@
     [
         {
             "name": "Easy",
-            "waves": 10,
+            "waves": 5,
             "spawns": [
                     {
                         "enemy": "zombie",
-                        "count": "5 wave +",
+                        "count": "3 wave +",
                         "hp": "base 5 wave * +",
                         "delay": "2",
                         "sequence": [1,2,3],
@@ -15,15 +15,15 @@
                     },
                     {
                         "enemy": "skeleton",
-                        "count": "wave",
-                        "hp": "30 wave *",
+                        "count": "wave 1 +",
+                        "hp": "base 10 wave * +",
                         "sequence": [2, 2],
                         "location": "random red"
                     },
                     {
                         "enemy": "warlock",
-                        "count": "wave 1 +",
-                        "hp": "100 25 wave * +",
+                        "count": "wave 4 /",
+                        "hp": "base 10 wave * +",
                         "location": "random bone"
                     },
                     {
@@ -37,12 +37,12 @@
         },
         {
             "name": "Medium",
-            "waves": 15,
+            "waves": 7,
             "spawns": [
                     {
                         "enemy": "zombie",
                         "count": "5 wave 2 * +",
-                        "hp": "base 25 wave * +",
+                        "hp": "base 10 wave * +",
                         "delay": "5",
                         "sequence": [1,2,3],
                         "location": "random"
@@ -50,14 +50,14 @@
                     {
                         "enemy": "skeleton",
                         "count": "wave",
-                        "hp": "25 wave *",
+                        "hp": "base 15 wave * +",
                         "sequence": [2, 2],
                         "location": "random red"
                     },
                     {
                         "enemy": "warlock",
                         "count": "wave 3 /",
-                        "hp": "75 50 wave * +",
+                        "hp": "base 15 wave * +",
                         "damage": "base 10 +",
                         "location": "random bone"
                     },
@@ -65,6 +65,7 @@
                         "enemy": "fire",
                         "count": "wave 2 +",
                         "hp": "base wave 5 * +",
+                        "damage": "base 2 +",
                         "sequence": [2, 1],
                         "location": "random green"
                     }
@@ -75,23 +76,23 @@
             "spawns": [
                     {
                         "enemy": "zombie",
-                        "count": "5 wave 3 * +",
-                        "hp": "15 wave *",
+                        "count": "5 wave 2 * +",
+                        "hp": "base 15 wave *",
                         "delay": "5",
                         "sequence": [1,2,3],
                         "location": "random"
                     },
                     {
                         "enemy": "skeleton",
-                        "count": "wave 4 /",
-                        "hp": "20 wave *",
+                        "count": "wave 2 +",
+                        "hp": "base 20 wave * +",
                         "sequence": [2, 2],
                         "location": "random red"
                     },
                     {
                         "enemy": "warlock",
-                        "count": "wave 10 / 1 wave 10 % - *",
-                        "hp": "75 15 wave * +",
+                        "count": "wave 2 /",
+                        "hp": "base 20 wave * +",
                         "damage": "base 5 -",
                         "location": "random bone"
                     },

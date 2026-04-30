@@ -27,13 +27,14 @@ public class EnemySpawner : MonoBehaviour
     public Difficulty difficulty;
     public LevelData levelData;
     public int waveNum = 0;
+    LevelData[] levels;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // LevelDataManager.Awake() will ensure Instance exists before this Start() runs- all Awake() must run before any Start()
-        LevelData[] levels = LevelDataManager.Instance.GetAllLevels();
-        
+        levels = LevelDataManager.Instance.GetAllLevels();
+
         // loop over the list of levels as read in from the json
         // add a button for each level, 60px down from the last
         for (int i = 0; i < levels.Length; i++)
@@ -48,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StartLevel(string levelname)
@@ -94,28 +95,44 @@ public class EnemySpawner : MonoBehaviour
         waveNum++;
         GameManager.Instance.state = GameManager.GameState.WAVEEND;
     }
+
     IEnumerator SpawnEnemyType(SpawnEntry spawnEntry, int waveNum)
     {
         EnemyData enemyData = EnemyDataManager.Instance.GetEnemyByName(spawnEntry.enemy);
         RPNReturns rpnResults = CalculateSpawnExpressions.Calculate(spawnEntry, enemyData, waveNum);
         float waitTime = 2;
         if (float.TryParse(spawnEntry.delay, out float result))
-        {
             waitTime = result;
-        }
-        for (int i = 0; i < rpnResults.count; i++)
-        {
-            SpawnPoint spawnPoint = GetRandomSpawnPoint(spawnEntry.location);
-            SpawnEnemy(enemyData, rpnResults, spawnPoint);
-            yield return new WaitForSeconds(waitTime);
-        }
 
+        // fallback if sequence not defined
+        int[] sequence = (spawnEntry.sequence != null && spawnEntry.sequence.Length > 0)
+            ? spawnEntry.sequence
+            : new int[] { 1 };
+        int totalSpawned = 0;
+        int seqIndex = 0;
+
+        while (totalSpawned < rpnResults.count)
+        {
+            int toSpawnThisBatch = sequence[seqIndex % sequence.Length];
+            toSpawnThisBatch = Mathf.Min(toSpawnThisBatch, rpnResults.count - totalSpawned);
+            for (int i = 0; i < toSpawnThisBatch; i++)
+            {
+                SpawnPoint spawnPoint = GetRandomSpawnPoint(spawnEntry.location);
+                SpawnEnemy(enemyData, rpnResults, spawnPoint);
+            }
+
+            totalSpawned += toSpawnThisBatch;
+            seqIndex++;
+
+            if (totalSpawned < rpnResults.count)
+                yield return new WaitForSeconds(waitTime);
+        }
     }
 
     void SpawnEnemy(EnemyData enemyData, RPNReturns rpnResults, SpawnPoint spawnPoint)
     {
         Vector2 offset = Random.insideUnitCircle * 1.8f;
-                
+
         Vector3 initial_position = spawnPoint.transform.position + new Vector3(offset.x, offset.y, 0);
         GameObject new_enemy = Instantiate(enemy, initial_position, Quaternion.identity);
 
@@ -127,6 +144,22 @@ public class EnemySpawner : MonoBehaviour
         en.speed = rpnResults.speed;
         en.damage = rpnResults.damage;
         GameManager.Instance.AddEnemy(new_enemy);
+    }
+
+    public void ResetGame()
+    {
+        waveNum = 0;
+        GameManager.Instance.state = GameManager.GameState.PREGAME;
+        GameManager.Instance.ResetWaveStats();
+        GameManager.Instance.ClearEnemies();
+
+        // clear all enemies
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            Destroy(enemy);
+
+        // tell player controller to reset player
+        GameManager.Instance.player.GetComponent<PlayerController>().ResetPlayer();
+        level_selector.gameObject.SetActive(true);
     }
 
     // currently only takes random spawns, however could easily be modified to take specific spawn points if needed

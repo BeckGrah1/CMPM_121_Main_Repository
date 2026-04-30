@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     public Hittable hp;
+    public int maxHp = 100;
     public HealthBar healthui;
     public ManaBar manaui;
 
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
         spellcaster = new SpellCaster(125, 8, Hittable.Team.PLAYER);
         StartCoroutine(spellcaster.ManaRegeneration());
         
-        hp = new Hittable(100, Hittable.Team.PLAYER, gameObject);
+        hp = new Hittable(maxHp, Hittable.Team.PLAYER, gameObject);
         hp.OnDeath += Die;
         hp.team = Hittable.Team.PLAYER;
 
@@ -38,12 +39,6 @@ public class PlayerController : MonoBehaviour
         healthui.SetHealth(hp);
         manaui.SetSpellCaster(spellcaster);
         spellui.SetSpell(spellcaster.spell);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void OnAttack(InputValue value)
@@ -63,7 +58,16 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("You Lost");
+        if (GameManager.Instance.state == GameManager.GameState.INWAVE)
+        {
+            GameManager.Instance.state = GameManager.GameState.GAMEOVER;
+        }
+    }
+
+    public void ResetPlayer()
+    {
+        hp = new Hittable(maxHp, Hittable.Team.PLAYER, gameObject);
+        hp.OnDeath += Die;
     }
 
 }

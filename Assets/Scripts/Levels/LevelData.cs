@@ -17,7 +17,7 @@ public class SpawnEntry
     public string count;
     public string hp;
     public string delay;
-    public List<int> sequence;
+    public int[] sequence;
     public string location;
     public string damage;
     public string speed;

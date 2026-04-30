@@ -24,7 +24,7 @@ public class LevelDataManager : MonoBehaviour
 
     private void LoadLevelData()
     {
-        levelList = JsonUtility.FromJson<LevelList>(levelJSON.text);
+        levelList = Newtonsoft.Json.JsonConvert.DeserializeObject<LevelList>(levelJSON.text); ;
     }
 
     public LevelData GetDifficultyByName(string name)
