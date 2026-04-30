@@ -35,6 +35,10 @@ public class GameManager
 
     private List<GameObject> enemies;
     public int enemy_count { get { return enemies.Count; } }
+    private int _enemiesKilledThisWave = 0;
+    public int enemiesKilledThisWave { get { return _enemiesKilledThisWave; } }
+    private float _waveDuration = 0f;
+    public float waveDuration { get { return _waveDuration; } }
 
     public void AddEnemy(GameObject enemy)
     {
@@ -43,6 +47,21 @@ public class GameManager
     public void RemoveEnemy(GameObject enemy)
     {
         enemies.Remove(enemy);
+        _enemiesKilledThisWave++;
+    }
+
+    // used to track the duration of a wave
+    public void TickWaveTimer(float deltaTime)
+    {
+        if (state == GameManager.GameState.INWAVE)
+            _waveDuration += deltaTime;
+    }
+
+    // Add this to ResetWaveStats()
+    public void ResetWaveStats()
+    {
+        _enemiesKilledThisWave = 0;
+        _waveDuration = 0f;
     }
 
     public GameObject GetClosestEnemy(Vector3 point)

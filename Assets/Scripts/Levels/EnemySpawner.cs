@@ -76,6 +76,7 @@ public class EnemySpawner : MonoBehaviour
             GameManager.Instance.countdown--;
         }
         GameManager.Instance.state = GameManager.GameState.INWAVE;
+        GameManager.Instance.ResetWaveStats();
         // new stuff here
         List<Coroutine> spawnCoroutines = new List<Coroutine>();
         foreach (SpawnEntry spawnEntry in levelData.spawns)
@@ -98,11 +99,6 @@ public class EnemySpawner : MonoBehaviour
         EnemyData enemyData = EnemyDataManager.Instance.GetEnemyByName(spawnEntry.enemy);
         RPNReturns rpnResults = CalculateSpawnExpressions.Calculate(spawnEntry, enemyData, waveNum);
         float waitTime = 2;
-        Debug.Log($"=== Spawning {spawnEntry.enemy} ===");
-        Debug.Log($"Count from RPN: {rpnResults.count}");
-        Debug.Log($"HP: {rpnResults.hp}, Speed: {rpnResults.speed}, Damage: {rpnResults.damage}");
-        Debug.Log($"Wave number: {waveNum}");
-        Debug.Log($"Raw count string: {spawnEntry.count}");
         if (float.TryParse(spawnEntry.delay, out float result))
         {
             waitTime = result;

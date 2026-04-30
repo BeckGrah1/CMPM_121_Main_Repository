@@ -1,19 +1,21 @@
+using TMPro;
 using UnityEngine;
 
 public class RewardScreenManager : MonoBehaviour
 {
     public GameObject rewardUI;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public TextMeshProUGUI enemiesKilled;
+    public TextMeshProUGUI waveDuration;
 
-    // Update is called once per frame
     void Update()
     {
+        GameManager.Instance.TickWaveTimer(Time.deltaTime);
+
         if (GameManager.Instance.state == GameManager.GameState.WAVEEND)
         {
+            enemiesKilled.text = "Enemies Killed: " + GameManager.Instance.enemiesKilledThisWave;
+            int seconds = Mathf.FloorToInt(GameManager.Instance.waveDuration);
+            waveDuration.text = "Time: " + seconds + "s";
             rewardUI.SetActive(true);
         }
         else
