@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,8 @@ public class WinScreen : MonoBehaviour
 {
     public GameObject winScreen;
     public Button returnButton;
+    public TextMeshProUGUI enemiesKilled;
+    public TextMeshProUGUI waveDuration;
 
     void Start()
     {
@@ -23,6 +26,13 @@ public class WinScreen : MonoBehaviour
         GameManager.OnPREGAME -= Hide;
     }
 
-    void Show() => winScreen.SetActive(true);
+    void Show()
+    {
+        enemiesKilled.text = "Enemies Killed: " + GameManager.Instance.enemiesKilledThisWave;
+        int seconds = Mathf.FloorToInt(GameManager.Instance.waveDuration);
+        waveDuration.text = "Time: " + seconds + "s";
+        winScreen.SetActive(true);
+    }
+
     void Hide() => winScreen.SetActive(false);
 }
