@@ -32,11 +32,15 @@ public class EnemySpawner : MonoBehaviour
     void OnEnable()
     {
         GameManager.OnNextWave += NextWave;
+        GameManager.OnGameReset += ResetGame;
+        GameManager.OnGAMEOVER += StopWave;
     }
 
     void OnDisable()
     {
         GameManager.OnNextWave -= NextWave;
+        GameManager.OnGameReset -= ResetGame;
+        GameManager.OnGAMEOVER -= StopWave;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -167,7 +171,6 @@ public class EnemySpawner : MonoBehaviour
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             Destroy(enemy);
 
-        GameManager.BroadcastGameReset();
         level_selector.gameObject.SetActive(true);
     }
 

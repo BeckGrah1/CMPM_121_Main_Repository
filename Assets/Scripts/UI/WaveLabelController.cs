@@ -3,23 +3,41 @@ using TMPro;
 
 public class WaveLabelController : MonoBehaviour
 {
+    enum DisplayMode { None, EnemyCount, Countdown }
+    DisplayMode mode;
+
     TextMeshProUGUI tmp;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         tmp = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
+    void OnEnable()
+    {
+        GameManager.OnINWAVE += ShowEnemyCount;
+        GameManager.OnCOUNTDOWN += ShowCountdown;
+        GameManager.OnWAVEEND += HideLabel;
+        GameManager.OnPREGAME += HideLabel;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnINWAVE -= ShowEnemyCount;
+        GameManager.OnCOUNTDOWN -= ShowCountdown;
+        GameManager.OnWAVEEND -= HideLabel;
+        GameManager.OnPREGAME -= HideLabel;
+    }
+
+    void ShowEnemyCount() => mode = DisplayMode.EnemyCount;
+    void ShowCountdown() => mode = DisplayMode.Countdown;
+    void HideLabel() => mode = DisplayMode.None;
+
     void Update()
     {
-        if (GameManager.Instance.state == GameManager.GameState.INWAVE)
-        {
+        if (mode == DisplayMode.EnemyCount)
             tmp.text = "Enemies left: " + GameManager.Instance.enemy_count;
-        }
-        if (GameManager.Instance.state == GameManager.GameState.COUNTDOWN)
-        {
+        else if (mode == DisplayMode.Countdown)
             tmp.text = "Starting in " + GameManager.Instance.countdown;
-        }
     }
 }

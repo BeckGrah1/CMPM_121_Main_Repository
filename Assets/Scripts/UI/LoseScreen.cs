@@ -1,19 +1,28 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoseScreen : MonoBehaviour
 {
     public GameObject loseScreen;
+    public Button returnButton;
 
-    private void Update()
+    void Start()
     {
-        if (GameManager.Instance.state == GameManager.GameState.GAMEOVER)
-        {
-            loseScreen.SetActive(true);
-        }
-        else
-        {
-            loseScreen.SetActive(false);
-        }
+        returnButton.onClick.AddListener(GameManager.BroadcastGameReset);
     }
 
+    void OnEnable()
+    {
+        GameManager.OnGAMEOVER += Show;
+        GameManager.OnPREGAME += Hide;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnGAMEOVER -= Show;
+        GameManager.OnPREGAME -= Hide;
+    }
+
+    void Show() { Debug.Log("LoseScreen Show"); loseScreen.SetActive(true); }
+    void Hide() => loseScreen.SetActive(false);
 }
