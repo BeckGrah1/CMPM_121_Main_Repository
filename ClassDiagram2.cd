@@ -3,7 +3,7 @@
   <Class Name="RewardScreenManager">
     <Position X="15.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAACAACAAAAAAAAAAAAIEBAgAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAACAACAAAAAAEAAAAAIEBAgEAAAIAAAAAAAACAA=</HashCode>
       <FileName>Assets\Scripts\UI\RewardScreenManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -13,14 +13,11 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CalculateSpawnExpressions" Collapsed="true">
-    <Position X="14" Y="1" Width="1.5" />
+    <Position X="13.5" Y="1" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAACAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Levels\CalculateSpawnExpressions.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="returns" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="RPNReturns">
     <Position X="16.75" Y="0.5" Width="1.5" />
@@ -63,9 +60,6 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAEAAAAAABAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Levels\LevelData.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="spawns" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="SpawnEntry">
     <Position X="2.25" Y="7.75" Width="1.5" />
@@ -95,13 +89,6 @@
       <Field Name="levels" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="SpawnPoint" Collapsed="true">
-    <Position X="14.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Levels\SpawnPoint.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="TMPro.TextMeshProUGUI" Collapsed="true">
     <Position X="18.75" Y="7.5" Width="1.5" />
     <TypeIdentifier />
@@ -115,23 +102,19 @@
   <Class Name="LoseScreen">
     <Position X="13.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAEAAAAAAAAAAUAAAIAAAAAAAACAA=</HashCode>
       <FileName>Assets\Scripts\UI\LoseScreen.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnemySpawner">
     <Position X="10.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQQACBRACACAAEAAACAIAAJAAECAAIIAgAIAAAQCAI=</HashCode>
+      <HashCode>AAQQACBRACAAAAAAAAAAMAABAAECAAIIAgAIAAIQCAI=</HashCode>
       <FileName>Assets\Scripts\Levels\EnemySpawner.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="SpawnPoints" />
       <Field Name="difficulty" />
       <Field Name="levelData" />
-      <Field Name="_levelDataManager" />
-      <Field Name="_enemyDataManager" />
-      <Field Name="_calculateSpawnExpressions" />
       <Field Name="levels" />
     </ShowAsAssociation>
   </Class>
