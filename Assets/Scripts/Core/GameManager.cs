@@ -11,7 +11,8 @@ public class GameManager
         INWAVE,
         WAVEEND,
         COUNTDOWN,
-        GAMEOVER
+        GAMEOVER,
+        WIN
     }
     public GameState state;
 
@@ -36,6 +37,13 @@ public class GameManager
     public static event Action OnLevelStart;
     public static event Action OnGameReset;
     public static event Action OnNextWave;
+
+    public static event Action OnPREGAME;
+    public static event Action OnINWAVE;
+    public static event Action OnWAVEEND;
+    public static event Action OnCOUNTDOWN;
+    public static event Action OnGAMEOVER;
+    public static event Action OnWIN;
 
     private List<GameObject> enemies;
     public int enemy_count { get { return enemies.Count; } }
@@ -93,6 +101,20 @@ public class GameManager
     public static void BroadcastNextWave()
     {
         OnNextWave?.Invoke();
+    }
+
+    public void SetState(GameState newState)
+    {
+        state = newState;
+        switch(newState)
+        {
+            case GameState.PREGAME:     OnPREGAME?.Invoke();    break;
+            case GameState.INWAVE:      OnINWAVE?.Invoke();     break;
+            case GameState.WAVEEND:     OnWAVEEND.Invoke();     break;
+            case GameState.COUNTDOWN:   OnCOUNTDOWN.Invoke();   break;
+            case GameState.GAMEOVER:    OnGAMEOVER.Invoke();    break;
+            case GameState.WIN:         OnWIN.Invoke();         break;
+        }
     }
 
 
