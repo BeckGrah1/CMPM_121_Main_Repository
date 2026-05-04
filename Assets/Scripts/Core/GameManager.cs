@@ -33,6 +33,9 @@ public class GameManager
     public PlayerSpriteManager playerSpriteManager;
     public RelicIconManager relicIconManager;
 
+    public static event Action OnLevelStart;
+    public static event Action OnGameReset;
+
     private List<GameObject> enemies;
     public int enemy_count { get { return enemies.Count; } }
     private int _enemiesKilledThisWave = 0;

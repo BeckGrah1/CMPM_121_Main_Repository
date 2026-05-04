@@ -64,6 +64,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // OnEnable(): Unity calls this when this GameObject becomes active
+    // while the object is active, run StartLevel when GameManager.OnLevelStart is invoked
+    // this allows other things to tell the game manager to start, and the game manager to tell the player to start
+    void OnEnable()
+    {
+        GameManager.OnLevelStart += StartLevel;
+        GameManager.OnGameReset += ResetPlayer;
+    }
+
+    // stop listening when the player GameObject is no longer active
+    void OnDisable()
+    {
+        GameManager.OnLevelStart -= StartLevel;
+        GameManager.OnGameReset -= ResetPlayer;
+    }
+
     public void ResetPlayer()
     {
         hp = new Hittable(maxHp, Hittable.Team.PLAYER, gameObject);

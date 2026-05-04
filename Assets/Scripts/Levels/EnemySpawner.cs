@@ -55,10 +55,10 @@ public class EnemySpawner : MonoBehaviour
     public void StartLevel(string levelname)
     {
         level_selector.gameObject.SetActive(false);
-        // this is not nice: we should not have to be required to tell the player directly that the level is starting
-        GameManager.Instance.player.GetComponent<PlayerController>().StartLevel();
-        StartCoroutine(SpawnWave());
+        GameManager.OnLevelStart?.Invoke();
         levelData = LevelDataManager.Instance.GetDifficultyByName(levelname);
+        StartCoroutine(SpawnWave());
+
     }
 
     public void NextWave()
@@ -157,8 +157,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             Destroy(enemy);
 
-        // tell player controller to reset player
-        GameManager.Instance.player.GetComponent<PlayerController>().ResetPlayer();
+        GameManager.OnGameReset?.Invoke();
         level_selector.gameObject.SetActive(true);
     }
 
