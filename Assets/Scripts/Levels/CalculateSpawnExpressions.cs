@@ -5,10 +5,11 @@ using UnityEngine;
 // calculates the necessary RPN expressions, gives back a class with the new values
 public class CalculateSpawnExpressions : MonoBehaviour
 {
+    static RPNReturns returns;
     public static RPNReturns Calculate(SpawnEntry spawnEntry, EnemyData enemyData, int waveNum)
     {
         Debug.Log("wave num: " + waveNum);
-        RPNReturns returns = new RPNReturns();
+        returns = new RPNReturns();
         Dictionary<string, int> dict = new Dictionary<string, int>
         {
             {"wave", waveNum },

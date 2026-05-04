@@ -7,7 +7,7 @@ public class LevelData
 {
     public string name;
     public int waves;
-    public List<SpawnEntry> spawns;
+    public SpawnEntry[] spawns;
 }
 
 [System.Serializable]

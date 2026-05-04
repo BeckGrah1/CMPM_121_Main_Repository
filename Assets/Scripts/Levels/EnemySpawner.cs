@@ -29,6 +29,12 @@ public class EnemySpawner : MonoBehaviour
     public int waveNum = 0;
     LevelData[] levels;
 
+    // dummy fields for class diagram
+    private GameManager _gameManager = GameManager.Instance;
+    private EnemyDataManager _enemyDataManager = EnemyDataManager.Instance;
+    private LevelDataManager _levelDataManager = LevelDataManager.Instance;
+    private CalculateSpawnExpressions _calculateSpawnExpressions;
+
     void OnEnable()
     {
         GameManager.OnNextWave += NextWave;
