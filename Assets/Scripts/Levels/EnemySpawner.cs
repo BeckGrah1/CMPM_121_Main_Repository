@@ -111,7 +111,14 @@ public class EnemySpawner : MonoBehaviour
 
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
         waveNum++;
-        GameManager.Instance.SetState(GameManager.GameState.WAVEEND);
+
+        // check for game win
+        bool isFiniteMode = levelData.waves > 0;
+        if (isFiniteMode && waveNum >= levelData.waves)
+            GameManager.Instance.SetState(GameManager.GameState.WIN);
+        else
+            GameManager.Instance.SetState(GameManager.GameState.WAVEEND);
+        Debug.Log("SpawnWave ended. waveNum=" + waveNum + " levelData.waves=" + levelData.waves + " state=" + GameManager.Instance.GetState());
     }
 
     IEnumerator SpawnEnemyType(SpawnEntry spawnEntry, int waveNum)
