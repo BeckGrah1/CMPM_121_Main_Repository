@@ -80,6 +80,11 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnWave());
     }
 
+    void StopWave()
+    {
+        StopAllCoroutines();
+    }
+
 
     IEnumerator SpawnWave()
     {
