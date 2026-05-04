@@ -1,11 +1,18 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RewardScreenManager : MonoBehaviour
 {
     public GameObject rewardUI;
     public TextMeshProUGUI enemiesKilled;
     public TextMeshProUGUI waveDuration;
+    public Button nextWaveButton;
+
+    void Start()
+    {
+        nextWaveButton.onClick.AddListener(OnNextWaveClicked);
+    }
 
     void Update()
     {
@@ -22,5 +29,10 @@ public class RewardScreenManager : MonoBehaviour
         {
             rewardUI.SetActive(false);
         }
+    }
+
+    public void OnNextWaveClicked()
+    {
+        GameManager.BroadcastNextWave();
     }
 }

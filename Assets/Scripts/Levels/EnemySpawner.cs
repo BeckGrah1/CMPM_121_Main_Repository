@@ -29,6 +29,16 @@ public class EnemySpawner : MonoBehaviour
     public int waveNum = 0;
     LevelData[] levels;
 
+    void OnEnable()
+    {
+        GameManager.OnNextWave += NextWave;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnNextWave -= NextWave;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

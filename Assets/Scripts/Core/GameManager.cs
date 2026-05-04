@@ -35,6 +35,7 @@ public class GameManager
 
     public static event Action OnLevelStart;
     public static event Action OnGameReset;
+    public static event Action OnNextWave;
 
     private List<GameObject> enemies;
     public int enemy_count { get { return enemies.Count; } }
@@ -88,6 +89,12 @@ public class GameManager
     {
         OnGameReset?.Invoke();
     }
+
+    public static void BroadcastNextWave()
+    {
+        OnNextWave?.Invoke();
+    }
+
 
     private GameManager()
     {
