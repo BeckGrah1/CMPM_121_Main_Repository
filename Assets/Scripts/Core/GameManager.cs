@@ -103,6 +103,7 @@ public class GameManager
     public static void BroadcastGameReset()
     {
         OnGameReset?.Invoke();
+        Instance.SetState(GameState.PREGAME);
     }
 
     public static void BroadcastNextWave()
@@ -130,8 +131,16 @@ public class GameManager
     }
 
 
+    private void CleanupGame()
+    {
+        DestroyAllEnemies();
+        ResetWaveStats();
+    }
+
     private GameManager()
     {
         enemies = new List<GameObject>();
+        OnGAMEOVER += CleanupGame;
+        OnGameReset += CleanupGame;
     }
 }

@@ -4070,6 +4070,7 @@ GameObject:
   - component: {fileID: 1115058367}
   - component: {fileID: 1115058369}
   - component: {fileID: 1115058368}
+  - component: {fileID: 1115058370}
   m_Layer: 5
   m_Name: DifficultySelector
   m_TagString: Untagged
@@ -4134,6 +4135,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115058366}
   m_CullTransparentMesh: 1
+--- !u!114 &1115058370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115058366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f05dbe9b28cbe5bb26c5bd42621653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelSelectorUI
 --- !u!1 &1202924358
 GameObject:
   m_ObjectHideFlags: 0

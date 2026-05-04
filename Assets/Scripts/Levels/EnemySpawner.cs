@@ -32,14 +32,14 @@ public class EnemySpawner : MonoBehaviour
     void OnEnable()
     {
         GameManager.OnNextWave += NextWave;
-        GameManager.OnGameReset += ResetGame;
+        GameManager.OnGameReset += ResetSpawner;
         GameManager.OnGAMEOVER += StopWave;
     }
 
     void OnDisable()
     {
         GameManager.OnNextWave -= NextWave;
-        GameManager.OnGameReset -= ResetGame;
+        GameManager.OnGameReset -= ResetSpawner;
         GameManager.OnGAMEOVER -= StopWave;
     }
 
@@ -68,7 +68,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartLevel(string levelname)
     {
-        level_selector.gameObject.SetActive(false);
         GameManager.BroadcastLevelStart();
         levelData = LevelDataManager.Instance.GetDifficultyByName(levelname);
         StartCoroutine(SpawnWave());
@@ -165,14 +164,9 @@ public class EnemySpawner : MonoBehaviour
         GameManager.Instance.AddEnemy(new_enemy);
     }
 
-    public void ResetGame()
+    void ResetSpawner()
     {
         waveNum = 0;
-        GameManager.Instance.SetState(GameManager.GameState.PREGAME);
-        GameManager.Instance.ResetWaveStats();
-        GameManager.Instance.DestroyAllEnemies();
-
-        level_selector.gameObject.SetActive(true);
     }
 
     // currently only takes random spawns, however could easily be modified to take specific spawn points if needed
