@@ -170,11 +170,7 @@ public class EnemySpawner : MonoBehaviour
         waveNum = 0;
         GameManager.Instance.SetState(GameManager.GameState.PREGAME);
         GameManager.Instance.ResetWaveStats();
-        GameManager.Instance.ClearEnemies();
-
-        // clear all enemies
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-            Destroy(enemy);
+        GameManager.Instance.DestroyAllEnemies();
 
         level_selector.gameObject.SetActive(true);
     }

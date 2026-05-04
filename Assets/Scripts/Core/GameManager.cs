@@ -88,6 +88,13 @@ public class GameManager
         enemies.Clear();
     }
 
+    public void DestroyAllEnemies()
+    {
+        foreach (GameObject enemy in enemies)
+            UnityEngine.Object.Destroy(enemy);
+        enemies.Clear();
+    }
+
     public static void BroadcastLevelStart()
     {
         OnLevelStart?.Invoke();
