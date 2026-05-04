@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.INWAVE)
         {
-            GameManager.Instance.state = GameManager.GameState.GAMEOVER;
+            GameManager.Instance.SetState(GameManager.GameState.GAMEOVER);
         }
     }
 

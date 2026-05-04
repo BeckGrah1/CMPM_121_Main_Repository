@@ -79,14 +79,14 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        GameManager.Instance.state = GameManager.GameState.COUNTDOWN;
+        GameManager.Instance.SetState(GameManager.GameState.COUNTDOWN);
         GameManager.Instance.countdown = 3;
         for (int i = 3; i > 0; i--)
         {
             yield return new WaitForSeconds(1);
             GameManager.Instance.countdown--;
         }
-        GameManager.Instance.state = GameManager.GameState.INWAVE;
+        GameManager.Instance.SetState(GameManager.GameState.INWAVE);
         GameManager.Instance.ResetWaveStats();
         // new stuff here
         List<Coroutine> spawnCoroutines = new List<Coroutine>();
@@ -103,7 +103,7 @@ public class EnemySpawner : MonoBehaviour
 
         yield return new WaitWhile(() => GameManager.Instance.enemy_count > 0);
         waveNum++;
-        GameManager.Instance.state = GameManager.GameState.WAVEEND;
+        GameManager.Instance.SetState(GameManager.GameState.WAVEEND);
     }
 
     IEnumerator SpawnEnemyType(SpawnEntry spawnEntry, int waveNum)
@@ -159,7 +159,7 @@ public class EnemySpawner : MonoBehaviour
     public void ResetGame()
     {
         waveNum = 0;
-        GameManager.Instance.state = GameManager.GameState.PREGAME;
+        GameManager.Instance.SetState(GameManager.GameState.PREGAME);
         GameManager.Instance.ResetWaveStats();
         GameManager.Instance.ClearEnemies();
 

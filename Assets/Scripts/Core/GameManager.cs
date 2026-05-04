@@ -14,7 +14,7 @@ public class GameManager
         GAMEOVER,
         WIN
     }
-    public GameState state;
+    public GameState state { get; private set; }
 
     public int countdown;
     private static GameManager theInstance;
@@ -110,11 +110,16 @@ public class GameManager
         {
             case GameState.PREGAME:     OnPREGAME?.Invoke();    break;
             case GameState.INWAVE:      OnINWAVE?.Invoke();     break;
-            case GameState.WAVEEND:     OnWAVEEND.Invoke();     break;
-            case GameState.COUNTDOWN:   OnCOUNTDOWN.Invoke();   break;
-            case GameState.GAMEOVER:    OnGAMEOVER.Invoke();    break;
-            case GameState.WIN:         OnWIN.Invoke();         break;
+            case GameState.WAVEEND:     OnWAVEEND?.Invoke();    break;
+            case GameState.COUNTDOWN:   OnCOUNTDOWN?.Invoke();  break;
+            case GameState.GAMEOVER:    OnGAMEOVER?.Invoke();   break;
+            case GameState.WIN:         OnWIN?.Invoke();        break;
         }
+    }
+
+    public GameState GetState()
+    {
+        return state;
     }
 
 
