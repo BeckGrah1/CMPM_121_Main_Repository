@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RewardScreenManager">
+    <Position X="15.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAACAAAAAAAAAAAAIEBAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\RewardScreenManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="enemiesKilled" />
+      <Field Name="waveDuration" />
+      <Field Name="nextWaveButton" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CalculateSpawnExpressions" Collapsed="true">
+    <Position X="14" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\CalculateSpawnExpressions.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="returns" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RPNReturns">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAABAAAAAAAAAAAAQAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\CalculateSpawnExpressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyData">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAABAEAQAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\EnemyData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyDataManager">
+    <Position X="5.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAgAAQAAAAAAAAAAAAAEAAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Levels\EnemyDataManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Instance" />
+      <Field Name="enemyList" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EnemyList">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\EnemyDataManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="enemies" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="LevelData">
+    <Position X="4.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAEAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\LevelData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="spawns" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpawnEntry">
+    <Position X="2.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAABAAAAAgCAAAAAQAAAQBAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Levels\LevelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelDataManager">
+    <Position X="8.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAFAAAAAAAAAAEAAAAAAAAAAAAAAQAEAAAAAAGE=</HashCode>
+      <FileName>Assets\Scripts\Levels\LevelDataManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Instance" />
+      <Field Name="levelList" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="LevelList">
+    <Position X="6.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\LevelDataManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="levels" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpawnPoint" Collapsed="true">
+    <Position X="14.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\SpawnPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.TextMeshProUGUI" Collapsed="true">
+    <Position X="18.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UnityEngine.UI.Button" Collapsed="true">
+    <Position X="18.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LoseScreen">
+    <Position X="13.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\LoseScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemySpawner">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQACBRACACAAEAAACAIAAJAAECAAIIAgAIAAAQCAI=</HashCode>
+      <FileName>Assets\Scripts\Levels\EnemySpawner.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="SpawnPoints" />
+      <Field Name="difficulty" />
+      <Field Name="levelData" />
+      <Field Name="_levelDataManager" />
+      <Field Name="_enemyDataManager" />
+      <Field Name="_calculateSpawnExpressions" />
+      <Field Name="levels" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="Difficulty" Collapsed="true">
+    <Position X="16" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAA=</HashCode>
+      <FileName>Assets\Scripts\Levels\EnemySpawner.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
