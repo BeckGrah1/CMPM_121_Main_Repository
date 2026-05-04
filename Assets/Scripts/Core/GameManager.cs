@@ -79,6 +79,16 @@ public class GameManager
         enemies.Clear();
     }
 
+    public static void BroadcastLevelStart()
+    {
+        OnLevelStart?.Invoke();
+    }
+
+    public static void BroadcastGameReset()
+    {
+        OnGameReset?.Invoke();
+    }
+
     private GameManager()
     {
         enemies = new List<GameObject>();

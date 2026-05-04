@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
     public void StartLevel(string levelname)
     {
         level_selector.gameObject.SetActive(false);
-        GameManager.OnLevelStart?.Invoke();
+        GameManager.BroadcastLevelStart();
         levelData = LevelDataManager.Instance.GetDifficultyByName(levelname);
         StartCoroutine(SpawnWave());
 
@@ -157,7 +157,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             Destroy(enemy);
 
-        GameManager.OnGameReset?.Invoke();
+        GameManager.BroadcastGameReset();
         level_selector.gameObject.SetActive(true);
     }
 
