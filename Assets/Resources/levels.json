@@ -105,5 +105,18 @@
                     }
                 ]
         }
+        ,
+        {
+            "name": "Debug",
+            "waves": 1,
+            "spawns": [
+                    {
+                        "enemy": "zombie",
+                        "count": "1",
+                        "hp": "base",
+                        "location": "random"
+                    }
+                ]
+        }
     ]
 }
