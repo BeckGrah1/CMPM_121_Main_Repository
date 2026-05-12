@@ -6,7 +6,9 @@ using UnityEngine;
 public class CalculateSpawnExpressions : MonoBehaviour
 {
     static RPNReturns returns;
-    public static RPNReturns Calculate(SpawnEntry spawnEntry, EnemyData enemyData, int waveNum)
+
+    //def not the best way to do this but...whatever
+    public static RPNReturns CalculateEnemyStats(SpawnEntry spawnEntry, EnemyData enemyData, int waveNum)
     {
         Debug.Log("wave num: " + waveNum);
         returns = new RPNReturns();
@@ -60,6 +62,52 @@ public class CalculateSpawnExpressions : MonoBehaviour
 
         return returns;
     }
+
+    public static RPNReturns CalculatePlayerStats(PlayerClass playerClass, int waveNum)
+    {
+        Dictionary<string, int> dict;
+        if (playerClass.health != null)
+        {
+            dict = new Dictionary<string, int>
+            {
+                {"wave", waveNum },
+            };
+            returns.hp = RPNEvaluator.RPNEvaluator.Evaluate(playerClass.health, dict);
+        }
+        if (playerClass.mana != null)
+        {
+            dict = new Dictionary<string, int>
+            {
+                {"wave", waveNum },
+            };
+            returns.mana = RPNEvaluator.RPNEvaluator.Evaluate(playerClass.mana, dict);
+        }
+        if (playerClass.mana_regeneration != null)
+        {
+            dict = new Dictionary<string, int>
+            {
+                {"wave", waveNum },
+            };
+            returns.mana_regen = RPNEvaluator.RPNEvaluator.Evaluate(playerClass.mana_regeneration, dict);
+        }
+        if (playerClass.spellpower != null)
+        {
+            dict = new Dictionary<string, int>
+            {
+                {"wave", waveNum },
+            };
+            returns.spellpower = RPNEvaluator.RPNEvaluator.Evaluate(playerClass.spellpower, dict);
+        }
+        if (playerClass.speed != null)
+        {
+            dict = new Dictionary<string, int>
+            {
+                {"wave", waveNum },
+            };
+            returns.speed = RPNEvaluator.RPNEvaluator.Evaluate(playerClass.speed, dict);
+        }
+        return returns;
+    }
 }
 
 [System.Serializable]
@@ -69,4 +117,7 @@ public class RPNReturns
     public int hp;
     public int speed;
     public int damage;
+    public int mana;
+    public int mana_regen;
+    public int spellpower;
 }
