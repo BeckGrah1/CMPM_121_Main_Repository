@@ -26,7 +26,7 @@ public class Spell
 
     public int GetDamage()
     {
-        return 100 + owner.rpnValues;
+        return 100;
     }
 
     public float GetCooldown()

@@ -6518,10 +6518,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ef5265fce1b544c872205988919fb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
   healthui: {fileID: 765025204}
   manaui: {fileID: 71109453}
   spellui: {fileID: 2085212185}
+  playerClass:
+    name: 
+    sprite: 0
+    health: 
+    mana: 
+    mana_regeneration: 
+    spellpower: 
+    speed: 
+  rpnValues:
+    count: 0
+    hp: 0
+    speed: 0
+    damage: 0
+    mana: 0
+    mana_regen: 0
+    spellpower: 0
   speed: 5
   unit: {fileID: 0}
 --- !u!4 &1718273953
@@ -6874,6 +6889,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectiles:
   - {fileID: 5974830082219523945, guid: f34a30cd4de40054fbf581a2defa05b3, type: 3}
+--- !u!114 &1803653863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803653849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9846f40be249e604bae076a0aed3b84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerClassManager
+  playerJSON: {fileID: 4900000, guid: 9e047d2499392254fa0551f4e9323383, type: 3}
 --- !u!1 &1842504302
 GameObject:
   m_ObjectHideFlags: 0
@@ -58030,6 +58058,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2107732465084047900, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1803653855}
+    - targetCorrespondingSourceObject: {fileID: 2107732465084047900, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1803653863}
   m_SourcePrefab: {fileID: 100100000, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
