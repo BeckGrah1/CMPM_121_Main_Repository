@@ -13,7 +13,7 @@ public class ValueModifier
 
     public type modifierType;
     public float value;
-    public float Apply(List<ValueModifier> modifiers, float baseValue)
+    public static float Apply(List<ValueModifier> modifiers, float baseValue)
     {
         float value = baseValue;
         foreach (var modifier in modifiers)
