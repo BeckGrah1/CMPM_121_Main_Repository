@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviour
         // defaulting to mage currently, in assignment 4 we will modify this to use what the player chooses
         playerClass = PlayerClassManager.Instance.getPlayerClassByName("mage");
         rpnValues = CalculateSpawnExpressions.CalculatePlayerStats(playerClass);
-        // NOTE: rpnValues.spellpower is not currently in use, should be implemented when further refining spell stuff
-        spellcaster = new SpellCaster(rpnValues.mana, rpnValues.mana_regen, Hittable.Team.PLAYER);
+        spellcaster = new SpellCaster(rpnValues.mana, rpnValues.mana_regen, rpnValues.spellpower, Hittable.Team.PLAYER);
         StartCoroutine(spellcaster.ManaRegeneration());
         
         hp = new Hittable(rpnValues.hp, Hittable.Team.PLAYER, gameObject);

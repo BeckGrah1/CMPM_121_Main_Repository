@@ -6,17 +6,11 @@ using UnityEngine;
 public class CalculateSpawnExpressions : MonoBehaviour
 {
     static RPNReturns returns;
-    static int waveNum = 0;
-
-    private void Awake()
-    {
-        GameManager.OnWAVEEND += UpdateWaveNum;
-        GameManager.OnGAMEOVER += ResetWaveNum;
-    }
 
     //def not the best way to do this but...whatever
     public static RPNReturns CalculateEnemyStats(SpawnEntry spawnEntry, EnemyData enemyData)
     {
+        int waveNum = GameManager.Instance.waveNum;
         Debug.Log("wave num: " + waveNum);
         returns = new RPNReturns();
         Dictionary<string, int> dict = new Dictionary<string, int>
@@ -72,6 +66,7 @@ public class CalculateSpawnExpressions : MonoBehaviour
 
     public static RPNReturns CalculatePlayerStats(PlayerClass playerClass)
     {
+        int waveNum = GameManager.Instance.waveNum;
         returns = new RPNReturns();
         Dictionary<string, int> dict;
         if (playerClass.health != null)
@@ -117,15 +112,6 @@ public class CalculateSpawnExpressions : MonoBehaviour
         return returns;
     }
 
-    public void UpdateWaveNum()
-    {
-        waveNum++;
-    }
-
-    public void ResetWaveNum()
-    {
-        waveNum = 0;
-    }
 }
 
 [System.Serializable]

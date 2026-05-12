@@ -45,6 +45,7 @@ public class GameManager
     public static event Action OnGAMEOVER;
     public static event Action OnWIN;
 
+    public int waveNum;
 
     private List<GameObject> enemies;
     public int enemy_count { get { return enemies.Count; } }
@@ -119,7 +120,10 @@ public class GameManager
         {
             case GameState.PREGAME:     OnPREGAME?.Invoke();    break;
             case GameState.INWAVE:      OnINWAVE?.Invoke();     break;
-            case GameState.WAVEEND:     OnWAVEEND?.Invoke();    break;
+            case GameState.WAVEEND:
+                waveNum++;
+                OnWAVEEND?.Invoke();
+                break;
             case GameState.COUNTDOWN:   OnCOUNTDOWN?.Invoke();  break;
             case GameState.GAMEOVER:    OnGAMEOVER?.Invoke();   break;
             case GameState.WIN:         OnWIN?.Invoke();        break;
@@ -134,6 +138,7 @@ public class GameManager
 
     private void CleanupGame()
     {
+        waveNum = 0;
         DestroyAllEnemies();
         ResetWaveStats();
     }
