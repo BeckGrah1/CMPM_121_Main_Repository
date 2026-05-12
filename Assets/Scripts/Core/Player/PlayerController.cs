@@ -8,13 +8,13 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     public Hittable hp;
-    public int maxHp = 100;
     public HealthBar healthui;
     public ManaBar manaui;
 
     public SpellCaster spellcaster;
     public SpellUI spellui;
-
+    public PlayerClass playerClass;
+    public RPNReturns rpnValues;
     public int speed;
 
     public Unit unit;
@@ -28,10 +28,14 @@ public class PlayerController : MonoBehaviour
 
     public void StartLevel()
     {
-        spellcaster = new SpellCaster(125, 8, Hittable.Team.PLAYER);
+        // defaulting to mage currently, in assignment 4 we will modify this to use what the player chooses
+        playerClass = PlayerClassManager.Instance.getPlayerClassByName("mage");
+        rpnValues = CalculateSpawnExpressions.CalculatePlayerStats(playerClass);
+        // NOTE: rpnValues.spellpower is not currently in use, should be implemented when further refining spell stuff
+        spellcaster = new SpellCaster(rpnValues.mana, rpnValues.mana_regen, Hittable.Team.PLAYER);
         StartCoroutine(spellcaster.ManaRegeneration());
         
-        hp = new Hittable(maxHp, Hittable.Team.PLAYER, gameObject);
+        hp = new Hittable(rpnValues.hp, Hittable.Team.PLAYER, gameObject);
         hp.OnDeath += Die;
         hp.team = Hittable.Team.PLAYER;
 
@@ -53,7 +57,7 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         if (GameManager.Instance.state == GameManager.GameState.PREGAME || GameManager.Instance.state == GameManager.GameState.GAMEOVER) return;
-        unit.movement = value.Get<Vector2>()*speed;
+        unit.movement = value.Get<Vector2>()*rpnValues.speed;
     }
 
     void Die()
@@ -82,8 +86,13 @@ public class PlayerController : MonoBehaviour
 
     public void ResetPlayer()
     {
-        hp = new Hittable(maxHp, Hittable.Team.PLAYER, gameObject);
+        hp = new Hittable(rpnValues.hp, Hittable.Team.PLAYER, gameObject);
         hp.OnDeath += Die;
+    }
+
+    public void UpdateRPNValues()
+    {
+        rpnValues = CalculateSpawnExpressions.CalculatePlayerStats(playerClass);
     }
 
 }

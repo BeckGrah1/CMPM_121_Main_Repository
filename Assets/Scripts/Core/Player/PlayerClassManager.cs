@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerClassManager : MonoBehaviour
@@ -27,7 +28,7 @@ public class PlayerClassManager : MonoBehaviour
         playerClassList = JsonUtility.FromJson<PlayerClassList>(playerJSON.text);
     }
 
-    public PlayerClass getPlayerClass(string name)
+    public PlayerClass getPlayerClassByName(string name)
     {
         foreach (PlayerClass playerClass in playerClassList.playerClasses)
         {

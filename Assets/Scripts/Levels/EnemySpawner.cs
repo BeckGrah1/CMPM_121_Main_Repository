@@ -130,7 +130,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnEnemyType(SpawnEntry spawnEntry, int waveNum)
     {
         EnemyData enemyData = EnemyDataManager.Instance.GetEnemyByName(spawnEntry.enemy);
-        RPNReturns rpnResults = CalculateSpawnExpressions.Calculate(spawnEntry, enemyData, waveNum);
+        RPNReturns rpnResults = CalculateSpawnExpressions.CalculateEnemyStats(spawnEntry, enemyData);
         float waitTime = 2;
         if (float.TryParse(spawnEntry.delay, out float result))
             waitTime = result;
@@ -206,5 +206,10 @@ public class EnemySpawner : MonoBehaviour
         }
         Debug.Log("spawn point filter " + locationFilter + " not found");
         return null;
+    }
+
+    public int giveWaveNum()
+    {
+        return waveNum;
     }
 }
