@@ -2,12 +2,15 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using RPNEvaluator;
 
-public class Spell 
+public class Spell
 {
     public float last_cast;
     public SpellCaster owner;
+    public SpellData data;
     public Hittable.Team team;
+    public int waveNum;
 
     public Spell(SpellCaster owner)
     {
@@ -21,17 +24,32 @@ public class Spell
 
     public int GetManaCost()
     {
-        return 10;
+        Dictionary<string, int> dict = new Dictionary<string, int>
+        {
+            { "wave", waveNum},
+            {"power", power }
+        };
+        return RPNEvaluator.RPNEvaluator.Evaluate(data.mana_cost, dict);
     }
 
     public int GetDamage()
     {
-        return 100;
+        Dictionary<string, int> dict = new Dictionary<string, int>
+        {
+            { "wave", waveNum},
+            {"power", power }
+        };
+        return RPNEvaluator.RPNEvaluator.Evaluate(data.damage.amount, dict);
     }
 
     public float GetCooldown()
     {
-        return 0.75f;
+        Dictionary<string, int> dict = new Dictionary<string, int>
+        {
+            { "wave", waveNum},
+            {"power", power }
+        };
+        return RPNEvaluator.RPNEvaluator.Evaluatef(data.cooldown, dict);
     }
 
     public virtual int GetIcon()
