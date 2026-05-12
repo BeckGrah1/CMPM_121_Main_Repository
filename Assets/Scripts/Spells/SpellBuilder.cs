@@ -10,7 +10,9 @@ public class SpellBuilder
 
     public Spell Build(SpellCaster owner)
     {
-        return new Spell(owner);
+        // currently just set to arcane bolt, can be modified to take in a name
+        SpellData data = SpellDataManager.Instance.Get("arcane_bolt");
+        return new Spell(owner, data);
     }
 
    
