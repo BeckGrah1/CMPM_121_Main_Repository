@@ -22,7 +22,7 @@ public class Spell
         return data.name;
     }
 
-    public int GetManaCost()
+    public virtual int GetManaCost()
     {
         Dictionary<string, int> dict = new Dictionary<string, int>
         {
@@ -42,7 +42,7 @@ public class Spell
         return RPNEvaluator.RPNEvaluator.Evaluate(data.damage.amount, dict);
     }
 
-    public float GetCooldown()
+    public virtual float GetCooldown()
     {
         Dictionary<string, int> dict = new Dictionary<string, int>
         {
