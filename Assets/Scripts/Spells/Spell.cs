@@ -11,6 +11,10 @@ public class Spell
     public SpellCaster owner;
     public SpellData data;
     public Hittable.Team team;
+
+    // for modifiers that add their own on hit effects
+    public Action<Hittable, Vector3> additionalOnHit;
+
     public Spell(SpellCaster owner, SpellData data)
     {
         this.owner = owner;
@@ -77,6 +81,7 @@ public class Spell
         Action<Hittable, Vector3> onHit = (other, impact) => {
             if (other.team != team)
                 other.Damage(new Damage(calculateDamage(spellParams), Damage.TypeFromString(data.damage.type)));
+            additionalOnHit?.Invoke(other, impact);
         };
 
         if (spellParams.trajectoryOverride != null)
@@ -101,6 +106,7 @@ public class Spell
         Action<Hittable, Vector3> onHit = (other, impact) => {
             if (other.team != team)
                 other.Damage(new Damage(calculateDamage(spellParams), Damage.TypeFromString(data.damage.type)));
+            additionalOnHit?.Invoke(other, impact);
         };
 
         if (spellParams.trajectoryOverride != null)

@@ -76,5 +76,10 @@
        "damage_multiplier": "0.75",
        "mana_adder": "10",
        "projectile_trajectory": "homing"
+   },
+   "geometry": {
+    "name": "geometry",
+    "description": "When spell collides with enemy, shoots two new projectiles to the left and right, increases mana cost",
+    "mana_multiplier": "1.6"
    }
 }
