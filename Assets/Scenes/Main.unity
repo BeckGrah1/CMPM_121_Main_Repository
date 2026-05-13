@@ -6902,6 +6902,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerClassManager
   playerJSON: {fileID: 4900000, guid: 9e047d2499392254fa0551f4e9323383, type: 3}
+--- !u!114 &1803653864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803653849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9348cafd62e2e8b4380eee5e915878f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellDataManager
+  spellDataJson: {fileID: 4900000, guid: 2315aa931f18d034e831c15c92e146a9, type: 3}
 --- !u!1 &1842504302
 GameObject:
   m_ObjectHideFlags: 0
@@ -58061,6 +58074,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2107732465084047900, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1803653863}
+    - targetCorrespondingSourceObject: {fileID: 2107732465084047900, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1803653864}
   m_SourcePrefab: {fileID: 100100000, guid: b531ed09aa5f5a847918ddac98e4bf16, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
