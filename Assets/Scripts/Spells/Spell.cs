@@ -36,7 +36,7 @@ public class Spell
         return RPNEvaluator.RPNEvaluator.Evaluate(data.mana_cost, dict);
     }
 
-    public int GetDamage()
+    public virtual int GetDamage()
     {
         Dictionary<string, int> dict = new Dictionary<string, int>
         {
@@ -120,7 +120,7 @@ public class Spell
         yield return new WaitForEndOfFrame();
     }
 
-    public float calculateSpeed(SpellParams spellParams)
+    public virtual float calculateSpeed(SpellParams spellParams)
     {
         Dictionary<string, int> dict = new Dictionary<string, int>
         {

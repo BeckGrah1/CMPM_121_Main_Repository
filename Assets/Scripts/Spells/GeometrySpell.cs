@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GeometrySpell : ModifierSpell
@@ -22,9 +23,14 @@ public class GeometrySpell : ModifierSpell
             Vector3 dir1 = Quaternion.Euler(0, 0, 90) * (target - where);
             Vector3 dir2 = Quaternion.Euler(0, 0, -90) * (target - where);
 
+            Action<Hittable, Vector3> sideOnHit = (other, impact) => {
+                if (other.team != team)
+                    other.Damage(new Damage(innerSpell.calculateDamage(spellParams), Damage.TypeFromString(innerSpell.data.damage.type)));
+            };
+
             // make two new projectiles at 90 degree angles from the first
-            GameManager.Instance.projectileManager.CreateProjectile(data.projectile.sprite, innerSpell.data.projectile.trajectory, impact, dir1, calculateSpeed(spellParams), null);
-            GameManager.Instance.projectileManager.CreateProjectile(data.projectile.sprite, innerSpell.data.projectile.trajectory, impact, dir2, calculateSpeed(spellParams), null);
+            GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, innerSpell.data.projectile.trajectory, impact, dir1, calculateSpeed(spellParams), sideOnHit);
+            GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, innerSpell.data.projectile.trajectory, impact, dir2, calculateSpeed(spellParams), sideOnHit);
         };
         yield return innerSpell.Cast(where, target, team, spellParams);
     }

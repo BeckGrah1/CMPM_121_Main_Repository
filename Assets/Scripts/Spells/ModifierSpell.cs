@@ -119,4 +119,16 @@ public class ModifierSpell : Spell
             return cooldown;
         }
     }
+
+    public override int GetDamage()
+    {
+        return innerSpell.GetDamage();
+    }
+
+    public override float calculateSpeed(SpellParams spellParams)
+    {
+        if (data.projectile == null)
+            return innerSpell.calculateSpeed(spellParams);
+        return base.calculateSpeed(spellParams);
+    }
 }
