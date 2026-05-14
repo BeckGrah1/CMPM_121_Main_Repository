@@ -17,10 +17,12 @@ public class SpellBuilder
         SpellData geoData = SpellDataManager.Instance.Get("geometry");
         SpellData vampData = SpellDataManager.Instance.Get("vampire");
         SpellData homingData = SpellDataManager.Instance.Get("homing");
+        SpellData cooldownData = SpellDataManager.Instance.Get("cooldown_reduction");
 
         Spell baseSpell = new Spell(owner, baseData);
         Spell geoSpell = new GeometrySpell(owner, geoData, baseSpell);
         Spell vampSpell = new VampireSpell(owner, vampData, geoSpell);
+        Spell cooldownSpell = new ModifierSpell(owner, cooldownData, vampSpell);
         return new ModifierSpell(owner, homingData, vampSpell);
     }
 
