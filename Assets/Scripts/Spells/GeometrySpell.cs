@@ -9,29 +9,33 @@ public class GeometrySpell : ModifierSpell
     {
     }
 
+    private bool onHitRegistered = false;
+
     public override IEnumerator Cast(Vector3 where, Vector3 target, Hittable.Team team, SpellParams spellParams)
     {
-        Dictionary<string, int> dict = new Dictionary<string, int>
-        {
-            { "wave", spellParams.wave },
-            { "power", spellParams.power }
-        };
-
         ApplyModifiers(spellParams);
-        innerSpell.additionalOnHit = (other, impact) =>
+
+        if (!onHitRegistered)
         {
-            Vector3 dir1 = Quaternion.Euler(0, 0, 90) * (target - where);
-            Vector3 dir2 = Quaternion.Euler(0, 0, -90) * (target - where);
+            innerSpell.GetBaseSpell().additionalOnHit += (other, impact) =>
+            {
+                Vector3 toEnemy = (other.owner.transform.position - impact).normalized;
+                Vector3 dir1 = Quaternion.Euler(0, 0, 90) * toEnemy;
+                Vector3 dir2 = Quaternion.Euler(0, 0, -90) * toEnemy;
 
-            Action<Hittable, Vector3> sideOnHit = (other, impact) => {
-                if (other.team != team)
-                    other.Damage(new Damage(innerSpell.calculateDamage(spellParams), Damage.TypeFromString(innerSpell.data.damage.type)));
+                Action<Hittable, Vector3> sideOnHit = (sideOther, sideImpact) => {
+                    if (sideOther.team != team)
+                        sideOther.Damage(new Damage(innerSpell.calculateDamage(spellParams), Damage.TypeFromString(innerSpell.data.damage.type)));
+                };
+
+                string trajectory = spellParams.trajectoryOverride ?? innerSpell.data.projectile.trajectory;
+
+                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, trajectory, impact, dir1, calculateSpeed(spellParams), sideOnHit);
+                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, trajectory, impact, dir2, calculateSpeed(spellParams), sideOnHit);
             };
+            onHitRegistered = true;
+        }
 
-            // make two new projectiles at 90 degree angles from the first
-            GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, innerSpell.data.projectile.trajectory, impact, dir1, calculateSpeed(spellParams), sideOnHit);
-            GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, innerSpell.data.projectile.trajectory, impact, dir2, calculateSpeed(spellParams), sideOnHit);
-        };
         yield return innerSpell.Cast(where, target, team, spellParams);
     }
 }

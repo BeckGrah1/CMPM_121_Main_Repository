@@ -131,4 +131,9 @@ public class ModifierSpell : Spell
             return innerSpell.calculateSpeed(spellParams);
         return base.calculateSpeed(spellParams);
     }
+
+    public override Spell GetBaseSpell()
+    {
+        return innerSpell.GetBaseSpell();
+    }
 }

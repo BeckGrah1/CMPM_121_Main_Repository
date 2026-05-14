@@ -13,7 +13,7 @@ public class Spell
     public Hittable.Team team;
 
     // for modifiers that add their own on hit effects
-    public Action<Hittable, Vector3> additionalOnHit;
+    public event Action<Hittable, Vector3> additionalOnHit;
 
     public Spell(SpellCaster owner, SpellData data)
     {
@@ -142,6 +142,16 @@ public class Spell
         float baseDamage = RPNEvaluator.RPNEvaluator.Evaluatef(data.damage.amount, dict);
         int damage = (int)ValueModifier.Apply(spellParams.damageModifiers, baseDamage);
         return damage;
+    }
+
+    public void InvokeAdditionalOnHit(Hittable other, Vector3 impact)
+    {
+        additionalOnHit?.Invoke(other, impact);
+    }
+
+    public virtual Spell GetBaseSpell()
+    {
+        return this;
     }
 
 }
