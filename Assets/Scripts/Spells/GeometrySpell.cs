@@ -19,19 +19,24 @@ public class GeometrySpell : ModifierSpell
         {
             innerSpell.GetBaseSpell().additionalOnHit += (other, impact) =>
             {
+                SpellParams freshParams = new SpellParams
+                {
+                    wave = GameManager.Instance.waveNum,
+                    power = owner.spellpower
+                };
+
+                string trajectory = freshParams.trajectoryOverride ?? innerSpell.GetBaseSpell().data.projectile.trajectory;
                 Vector3 toEnemy = (other.owner.transform.position - impact).normalized;
                 Vector3 dir1 = Quaternion.Euler(0, 0, 90) * toEnemy;
                 Vector3 dir2 = Quaternion.Euler(0, 0, -90) * toEnemy;
 
                 Action<Hittable, Vector3> sideOnHit = (sideOther, sideImpact) => {
                     if (sideOther.team != team)
-                        sideOther.Damage(new Damage(innerSpell.calculateDamage(spellParams), Damage.TypeFromString(innerSpell.data.damage.type)));
+                        sideOther.Damage(new Damage(innerSpell.calculateDamage(freshParams), Damage.TypeFromString(innerSpell.data.damage.type)));
                 };
 
-                string trajectory = spellParams.trajectoryOverride ?? innerSpell.data.projectile.trajectory;
-
-                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, trajectory, impact, dir1, calculateSpeed(spellParams), sideOnHit);
-                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, trajectory, impact, dir2, calculateSpeed(spellParams), sideOnHit);
+                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, trajectory, impact, dir1, innerSpell.calculateSpeed(freshParams), sideOnHit);
+                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, trajectory, impact, dir2, innerSpell.calculateSpeed(freshParams), sideOnHit);
             };
             onHitRegistered = true;
         }
