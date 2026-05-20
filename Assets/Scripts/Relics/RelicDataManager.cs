@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RelicDataManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class RelicDataManager : MonoBehaviour
 
     [SerializeField] private TextAsset relicDataJson;
 
-    private Dictionary<string, Relic> spells = new();
+    private List<Relic> relics = new();
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -25,12 +26,17 @@ public class RelicDataManager : MonoBehaviour
 
     private void loadRelicData()
     {
-        spells = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Relic>>(relicDataJson.text);
+        relics = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Relic>>(relicDataJson.text);
     }
 
     public Relic Get(string key)
     {
-        spells.TryGetValue(key, out var data);
-        return data;
+        foreach(Relic relic in relics) {
+            if (relic.name == key)
+            {
+                return relic;
+            }
+        }
+        return null;
     }
 }

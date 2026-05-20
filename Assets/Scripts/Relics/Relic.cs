@@ -3,6 +3,8 @@ using UnityEngine;
 [System.Serializable]
 public class Relic
 {
+    public string name;
+    public int sprite;
     public Trigger trigger;
     public Effect effect;
 }
@@ -10,16 +12,16 @@ public class Relic
 [System.Serializable]
 public class Trigger
 {
-    string description;
-    string type;
-    string amount;
+    public string description;
+    public string type;
+    public string amount;
 }
 
 [System.Serializable]
 public class Effect
 {
-    string description;
-    string type;
-    string amount;
-    string until;
+    public string description;
+    public string type;
+    public string amount;
+    public string until;
 }
