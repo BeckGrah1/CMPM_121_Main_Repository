@@ -16,10 +16,18 @@ public class Hittable
     {
         EventBus.Instance.DoDamage(owner.transform.position, damage, this);
         hp -= damage.amount;
+        if (this.team == Team.PLAYER)
+        {
+            EventBus.Instance.DoPlayerDamaged(damage);
+        }
         if (hp <= 0)
         {
             hp = 0;
             OnDeath();
+            if (this.team == Team.MONSTERS)
+            {
+                EventBus.Instance.DoEnemyKilled();
+            }
         }
     }
 
