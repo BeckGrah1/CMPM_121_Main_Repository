@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.GameState.PREGAME || GameManager.Instance.state == GameManager.GameState.GAMEOVER) return;
         unit.movement = value.Get<Vector2>()*rpnValues.speed;
+        EventBus.Instance.DoPlayerMoved();
     }
 
     void Die()

@@ -8,7 +8,7 @@ public class RelicDataManager : MonoBehaviour
 
     [SerializeField] private TextAsset relicDataJson;
 
-    private List<Relic> relics = new();
+    private List<RelicData> relics = new();
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,12 +26,12 @@ public class RelicDataManager : MonoBehaviour
 
     private void loadRelicData()
     {
-        relics = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Relic>>(relicDataJson.text);
+        relics = Newtonsoft.Json.JsonConvert.DeserializeObject<List<RelicData>>(relicDataJson.text);
     }
 
-    public Relic Get(string key)
+    public RelicData Get(string key)
     {
-        foreach(Relic relic in relics) {
+        foreach(RelicData relic in relics) {
             if (relic.name == key)
             {
                 return relic;

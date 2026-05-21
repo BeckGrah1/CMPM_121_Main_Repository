@@ -41,6 +41,10 @@ public class SpellCaster
     {        
         if (mana >= spell.GetManaCost() && spell.IsReady())
         {
+            if (this.team == Hittable.Team.PLAYER)
+            {
+                EventBus.Instance.DoSpellCast();
+            }
             mana -= spell.GetManaCost();
             yield return spell.Cast(where, target, team);
         }
