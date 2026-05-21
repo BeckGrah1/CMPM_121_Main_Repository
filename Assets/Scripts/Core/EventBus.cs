@@ -39,12 +39,6 @@ public class EventBus
         OnPlayerMoved?.Invoke();
     }
 
-    public event Action OnPlayerStoodStill;
-    public void DoPlayerStoodStill()
-    {
-        OnPlayerStoodStill?.Invoke();
-    }
-
     public event Action OnSpellCast;
     public void DoSpellCast()
     {

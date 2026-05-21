@@ -5,8 +5,8 @@ public class RelicData
 {
     public string name;
     public int sprite;
-    public TriggerData triggerData;
-    public EffectData effectData;
+    public TriggerData trigger;
+    public EffectData effect;
 }
 
 [System.Serializable]

@@ -39,4 +39,9 @@ public class RelicDataManager : MonoBehaviour
         }
         return null;
     }
+
+    public List<RelicData> GetAll()
+    {
+        return relics;
+    }
 }
