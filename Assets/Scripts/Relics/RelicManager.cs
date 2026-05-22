@@ -46,10 +46,16 @@ public class RelicManager : MonoBehaviour
         if (GameManager.Instance.waveNum % wavesPerRelic == 0)
         {
             List<RelicData> data = RelicDataManager.Instance.GetAll();
-            if (data.Count == currentRelics.Count)
+            List<RelicData> offerList = new List<RelicData>();
+            List<RelicData> available = data.FindAll(d =>
+                !currentRelics.Exists(r => r.name == d.name));
+            for (int i = 0; i < Mathf.Min(data.Count - currentRelics.Count, 3); i++)
             {
-                Debug.LogWarning("no relics to offer");
+                int position = Random.Range(0, available.Count);
+                offerList.Add(data[position]);
             }
         }
+        // interact with UI
+
     }
 }
