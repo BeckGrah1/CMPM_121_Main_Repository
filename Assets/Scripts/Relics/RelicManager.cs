@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 public class RelicManager : MonoBehaviour
 {
-    List<Relic> currentRelics = new List<Relic>();
+    public List<Relic> currentRelics = new List<Relic>();
     public int wavesPerRelic = 3;
 
     public static RelicManager Instance;
@@ -22,10 +22,12 @@ public class RelicManager : MonoBehaviour
             GameManager.OnWAVEEND += offerRelic;
         }
     }
-
-    public void addRelic(Relic relic)
+    public void addRelic(RelicData relicData)
     {
+        Relic relic = RelicBuilder.Build(relicData);
         currentRelics.Add(relic);
+        EventBus.Instance.DoRelicPickup(relic);
+        Debug.Log("relic added");
     }
 
     public void removeRelic(Relic relic)
@@ -43,7 +45,8 @@ public class RelicManager : MonoBehaviour
 
     void offerRelic()
     {
-        if (GameManager.Instance.waveNum % wavesPerRelic == 0)
+        if (//GameManager.Instance.waveNum % wavesPerRelic == 0
+            0 == 0)
         {
             List<RelicData> data = RelicDataManager.Instance.GetAll();
             List<RelicData> offerList = new List<RelicData>();
@@ -52,10 +55,12 @@ public class RelicManager : MonoBehaviour
             for (int i = 0; i < Mathf.Min(data.Count - currentRelics.Count, 3); i++)
             {
                 int position = Random.Range(0, available.Count);
-                offerList.Add(data[position]);
+                offerList.Add(available[position]);
+                available.RemoveAt(position);
             }
+
+            RelicUIManager.Instance.DisplayOfferedRelics(offerList);
         }
-        // interact with UI
 
     }
 }

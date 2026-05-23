@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class RelicEffect
 {
+    public string description;
+    public bool active = false;
     protected void RegisterUntil(string until)
     {
         if (until == null) return;
@@ -12,6 +14,9 @@ public class RelicEffect
                 break;
             case "move":
                 EventBus.Instance.OnPlayerMoved += StopEffect;
+                break;
+            case "take-damage":
+                EventBus.Instance.OnPlayerDamaged += (dmg) => StopEffect();
                 break;
             default:
                 Debug.LogWarning("until type: " + until + "not recognized, make sure to add to the switch in RelicEffect");
@@ -26,5 +31,16 @@ public class RelicEffect
     public virtual void StopEffect()
     {
 
+    }
+
+    public virtual void UpdateRPN()
+    {
+
+    }
+
+    // can be overrided to return true
+    public virtual bool IsActive()
+    {
+        return false;
     }
 }

@@ -15,6 +15,11 @@ GameObject:
   - component: {fileID: 421493446964380599}
   - component: {fileID: 3904239589605202971}
   - component: {fileID: 7902749510839474386}
+  - component: {fileID: 5949886895186721574}
+  - component: {fileID: 8548535333847930222}
+  - component: {fileID: -6655389990237893457}
+  - component: {fileID: -5051877087126387766}
+  - component: {fileID: -2526919543301247089}
   m_Layer: 0
   m_Name: GFXManager
   m_TagString: Untagged
@@ -76,6 +81,7 @@ MonoBehaviour:
   - {fileID: -1128172176, guid: e0ba5a7a2ca92e643ad58fc85d241001, type: 3}
   - {fileID: -1897020493, guid: e0ba5a7a2ca92e643ad58fc85d241001, type: 3}
   - {fileID: 272345912, guid: e0ba5a7a2ca92e643ad58fc85d241001, type: 3}
+  - {fileID: 944695348, guid: e0ba5a7a2ca92e643ad58fc85d241001, type: 3}
 --- !u!114 &2963255102610807039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6b8f57ed499fb469b00160ccba3a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataManager
-  enemyJSON: {fileID: 0}
+  enemyJSON: {fileID: 4900000, guid: 0113e2a27a7ef2f40b62cf96d0d02f54, type: 3}
 --- !u!114 &7902749510839474386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,4 +183,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57143881839a8574da070eca1a9fd6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelDataManager
-  levelJSON: {fileID: 0}
+  levelJSON: {fileID: 4900000, guid: b7707569169386540b030d78bced44d8, type: 3}
+--- !u!114 &5949886895186721574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107732465084047900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd2c806b02f1784c9175cd9e9489a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileManager
+  projectiles: []
+--- !u!114 &8548535333847930222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107732465084047900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9846f40be249e604bae076a0aed3b84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerClassManager
+  playerJSON: {fileID: 4900000, guid: 9e047d2499392254fa0551f4e9323383, type: 3}
+--- !u!114 &-6655389990237893457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107732465084047900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9348cafd62e2e8b4380eee5e915878f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellDataManager
+  spellDataJson: {fileID: 4900000, guid: 2315aa931f18d034e831c15c92e146a9, type: 3}
+--- !u!114 &-5051877087126387766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107732465084047900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a38562d57757e043ba10ed414d065de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RelicDataManager
+  relicDataJson: {fileID: 4900000, guid: 87a85e7c0ce24a9488e95bd8e88d55d4, type: 3}
+--- !u!114 &-2526919543301247089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107732465084047900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e3cb21812fa6f43bf3102eec1a8701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RelicManager
+  wavesPerRelic: 3

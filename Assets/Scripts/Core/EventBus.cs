@@ -45,4 +45,16 @@ public class EventBus
         OnSpellCast?.Invoke();
     }
 
+    public event Action<Relic> OnRelicPickup;
+    public void DoRelicPickup(Relic relic)
+    {
+        OnRelicPickup?.Invoke(relic);
+    }
+
+    public Action OnFullHP;
+    public void DoFullHP()
+    {
+        OnFullHP?.Invoke();
+    }
+
 }

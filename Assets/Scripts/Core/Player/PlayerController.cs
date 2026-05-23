@@ -95,4 +95,13 @@ public class PlayerController : MonoBehaviour
         rpnValues = CalculateSpawnExpressions.CalculatePlayerStats(playerClass);
     }
 
+    public void HealPlayer(int healAmount)
+    {
+        hp.hp = Mathf.Min(hp.hp + healAmount, hp.max_hp);
+        if (hp.hp == hp.max_hp)
+        {
+            EventBus.Instance.DoFullHP();
+        }
+    }
+
 }

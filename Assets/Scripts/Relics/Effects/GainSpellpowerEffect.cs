@@ -1,13 +1,23 @@
 using UnityEngine;
+using RPNEvaluator;
+using System.Collections.Generic;
 
 public class GainSpellpowerEffect : RelicEffect
 {
     int amount;
-    bool active = false;
-    public GainSpellpowerEffect(string amnt, string until)
+    string rpnAmount;
+    public GainSpellpowerEffect(RelicData data)
     {
-        amount = int.Parse(amnt);
-        RegisterUntil(until);
+        rpnAmount = data.effect.amount;
+        Dictionary<string, int> dict = new Dictionary<string, int>
+            {
+                {"wave", GameManager.Instance.waveNum }
+            };
+        amount = RPNEvaluator.RPNEvaluator.Evaluate(rpnAmount, dict);
+        if (data.effect.until != null)
+        {
+            RegisterUntil(data.effect.until);
+        }
     }
 
     public override void DoEffect()
@@ -25,5 +35,19 @@ public class GainSpellpowerEffect : RelicEffect
             player.spellcaster.spellpower -= amount;
             active = false;
         }
+    }
+
+    public override void UpdateRPN()
+    {
+        Dictionary<string, int> dict = new Dictionary<string, int>
+            {
+                {"wave", GameManager.Instance.waveNum }
+            };
+        amount = RPNEvaluator.RPNEvaluator.Evaluate(rpnAmount, dict);
+    }
+
+    public override bool IsActive()
+    {
+        return active;
     }
 }

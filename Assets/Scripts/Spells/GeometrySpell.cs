@@ -32,11 +32,11 @@ public class GeometrySpell : ModifierSpell
 
                 Action<Hittable, Vector3> sideOnHit = (sideOther, sideImpact) => {
                     if (sideOther.team != team)
-                        sideOther.Damage(new Damage(innerSpell.calculateDamage(freshParams), Damage.TypeFromString(innerSpell.data.damage.type)));
+                        sideOther.Damage(new Damage(innerSpell.calculateDamage(freshParams), Damage.TypeFromString(innerSpell.GetBaseSpell().data.damage.type)));
                 };
 
-                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, trajectory, impact, dir1, innerSpell.calculateSpeed(freshParams), sideOnHit);
-                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.data.projectile.sprite, trajectory, impact, dir2, innerSpell.calculateSpeed(freshParams), sideOnHit);
+                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.GetBaseSpell().data.projectile.sprite, trajectory, impact, dir1, innerSpell.calculateSpeed(freshParams), sideOnHit);
+                GameManager.Instance.projectileManager.CreateProjectile(innerSpell.GetBaseSpell().data.projectile.sprite, trajectory, impact, dir2, innerSpell.calculateSpeed(freshParams), sideOnHit);
             };
             onHitRegistered = true;
         }

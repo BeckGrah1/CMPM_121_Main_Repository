@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RelicTrigger
 {
+    public string description;
     public virtual void Register()
     {
 

@@ -6,9 +6,11 @@ public class StandStillTrigger : RelicTrigger
     float timePassed = 0;
     RelicEffect effect;
     bool effectActive;
-    public StandStillTrigger(RelicEffect efct, string amt)
+    private Vector3 pos;
+    public StandStillTrigger(RelicData data, RelicEffect efct)
     {
-        amount = float.Parse(amt);
+        description = data.trigger.description;
+        amount = float.Parse(data.trigger.amount);
         effect = efct;
         EventBus.Instance.OnPlayerMoved += resetWaitTime;
     }
@@ -16,6 +18,7 @@ public class StandStillTrigger : RelicTrigger
     private void resetWaitTime()
     {
         timePassed = 0;
+        pos = GameManager.Instance.player.transform.position;
         if (effectActive)
         {
             effectActive = false;
@@ -26,7 +29,7 @@ public class StandStillTrigger : RelicTrigger
     public override void Update()
     {
         timePassed += Time.deltaTime;
-        if (timePassed > amount)
+        if (timePassed > amount && pos == GameManager.Instance.player.transform.position)
         {
             if (!effectActive)
             {

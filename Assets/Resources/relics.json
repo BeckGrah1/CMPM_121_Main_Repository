@@ -53,5 +53,46 @@
             "type": "gain-mana",
             "amount": "25"
         }
+    },
+    {
+        "name": "mage's pendant",
+        "sprite": 6,
+        "trigger": {
+            "description": "When you are at full hp",
+            "type": "full-hp"
+        },
+        "effect": {
+            "description": " gain 50 max mana.",
+            "type": "gain-max-mana",
+            "amount": "50",
+            "until": "take-damage"
+        }
+    },
+    {
+        "name": "deathcap",
+        "sprite": 16,
+        "trigger": {
+            "description": "When you kill an enemy",
+            "type": "on-kill"
+        },
+        "effect": {
+            "description": " gain 3 permanent spellpower.",
+            "type": "gain-spellpower",
+            "amount": "3"
+        }
+    },
+    {
+        "name": "rejuvenation necklace",
+        "sprite": 17,
+        "trigger": {
+            "description": "When you kill an enemy",
+            "type": "on-kill"
+        },
+        "effect": {
+            "description": " heal 2 hp",
+            "type": "gain-hp",
+            "amount": "2"
+        }
     }
+
 ]
