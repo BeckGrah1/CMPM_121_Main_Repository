@@ -6687,7 +6687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthui: {fileID: 765025204}
   manaui: {fileID: 71109453}
-  sprite: {fileID: 0}
+  sprite: {fileID: 232596022}
   spellui: {fileID: 2085212185}
   playerClass:
     name: 
