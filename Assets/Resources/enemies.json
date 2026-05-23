@@ -10,9 +10,9 @@
         {
             "name": "skeleton",
             "sprite": 1,
-            "hp": 30,
-            "speed": 7,
-            "damage": 10
+            "hp": 25,
+            "speed": 6,
+            "damage": 8
         },  
         {
             "name": "warlock",
@@ -24,8 +24,8 @@
         {
             "name": "fire",
             "sprite": 26,
-            "hp": 15,
-            "speed": 12,
+            "hp": 10,
+            "speed": 10,
             "damage": 20
         }
     ]

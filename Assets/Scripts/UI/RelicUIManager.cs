@@ -55,4 +55,9 @@ public class RelicUIManager : MonoBehaviour
             rewardRelic.transform.localPosition = new Vector2(startX + spacing * i, 10);
         }
     }
+
+    public void DestroyOffers()
+    {
+        EventBus.Instance.DoDestroyRewardRelics();
+    }
 }
