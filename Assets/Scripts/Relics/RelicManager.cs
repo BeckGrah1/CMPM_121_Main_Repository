@@ -45,8 +45,7 @@ public class RelicManager : MonoBehaviour
 
     void offerRelic()
     {
-        if (//GameManager.Instance.waveNum % wavesPerRelic == 0
-            0 == 0)
+        if (GameManager.Instance.waveNum % wavesPerRelic == 0)
         {
             List<RelicData> data = RelicDataManager.Instance.GetAll();
             List<RelicData> offerList = new List<RelicData>();

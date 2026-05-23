@@ -13,6 +13,7 @@ public class RelicRewardUI : MonoBehaviour
     public void Awake()
     {
         GameManager.OnINWAVE += destroy;
+        EventBus.Instance.DestroyRewardRelics += destroy;
     }
     public void SetRelic(RelicData r)
     {
@@ -24,12 +25,13 @@ public class RelicRewardUI : MonoBehaviour
     public void TakeRelic()
     {
         RelicManager.Instance.addRelic(relic);
-        destroy();
+        RelicUIManager.Instance.DestroyOffers();
     }
 
     private void destroy()
     {
         GameManager.OnINWAVE -= destroy;
+        EventBus.Instance.DestroyRewardRelics -= destroy;
         Destroy(this.gameObject);
     }
 }

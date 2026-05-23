@@ -57,4 +57,11 @@ public class EventBus
         OnFullHP?.Invoke();
     }
 
+    public Action DestroyRewardRelics;
+
+    public void DoDestroyRewardRelics()
+    {
+        DestroyRewardRelics?.Invoke();
+    }
+
 }
