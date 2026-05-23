@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Hittable hp;
     public HealthBar healthui;
     public ManaBar manaui;
+    public SpriteRenderer sprite;
 
     public SpellCaster spellcaster;
     public SpellUI spellui;
@@ -26,10 +27,14 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.player = gameObject;
     }
 
+    public void setPlayerClass(string name)
+    {
+        playerClass = PlayerClassManager.Instance.getPlayerClassByName(name);
+        sprite.sprite = GameManager.Instance.playerSpriteManager.sprites[playerClass.sprite];
+    }
+
     public void StartLevel()
     {
-        // defaulting to mage currently, in assignment 4 we will modify this to use what the player chooses
-        playerClass = PlayerClassManager.Instance.getPlayerClassByName("mage");
         rpnValues = CalculateSpawnExpressions.CalculatePlayerStats(playerClass);
         spellcaster = new SpellCaster(rpnValues.mana, rpnValues.mana_regen, rpnValues.spellpower, Hittable.Team.PLAYER);
         StartCoroutine(spellcaster.ManaRegeneration());

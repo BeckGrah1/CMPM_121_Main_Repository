@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using UnityEngine;
 
@@ -38,6 +39,11 @@ public class PlayerClassManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public PlayerClass[] getAllClasses()
+    {
+        return playerClassList.playerClasses;
     }
 }
 

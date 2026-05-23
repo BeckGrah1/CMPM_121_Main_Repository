@@ -103,6 +103,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -260,7 +261,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5628950486595927222}
         m_TargetAssemblyTypeName: MenuSelectorController, Assembly-CSharp
-        m_MethodName: StartLevel
+        m_MethodName: ButtonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -283,5 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 3711922461900209974}
-  level: 
+  level: not set
+  playerClass: not set
   spawner: {fileID: 0}
