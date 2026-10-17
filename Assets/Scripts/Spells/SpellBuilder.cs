@@ -5,15 +5,18 @@ public class SpellBuilder
 {
     private static List<string> baseSpells = new List<string> { "arcane_bolt"};
     private static List<string> modifierSpells = new List<string> { "damage_amp", "speed_amp", "doubler", "splitter", "chaos", "homing", "geometry", "vampire" };
+    public string spellDescription;
+    public RewardScreenManager rsm;
 
     public Spell Build(SpellCaster owner)
     {
         // pick random base spell
         string baseKey = baseSpells[Random.Range(0, baseSpells.Count)];
         Spell spell = new Spell(owner, SpellDataManager.Instance.Get(baseKey));
-        string spellDescription = baseKey;
+        spellDescription = baseKey;
 
         // wrap in 2 random modifiers
+        
         for (int i = 0; i < 2; i++)
         {
             string modKey = modifierSpells[Random.Range(0, modifierSpells.Count)];
@@ -23,6 +26,11 @@ public class SpellBuilder
         }
 
         Debug.Log("Built spell: " + spellDescription);
+        if (rsm == null)
+        {
+            rsm = GameObject.FindAnyObjectByType<RewardScreenManager>();
+        }
+        rsm.changeSpellDescription(spellDescription);
         return spell;
     }
 

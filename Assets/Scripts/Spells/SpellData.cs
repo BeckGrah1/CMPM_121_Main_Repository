@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.Windows.Speech;
 
 [System.Serializable]
 public class SpellData

@@ -4,7 +4,7 @@ using NUnit.Framework;
 public class RelicManager : MonoBehaviour
 {
     public List<Relic> currentRelics = new List<Relic>();
-    public int wavesPerRelic = 3;
+    public int wavesPerRelic = 1;
 
     public static RelicManager Instance;
 

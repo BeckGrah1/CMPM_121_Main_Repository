@@ -7,8 +7,8 @@ public class RewardScreenManager : MonoBehaviour
     public GameObject rewardUI;
     public TextMeshProUGUI enemiesKilled;
     public TextMeshProUGUI waveDuration;
+    public TextMeshProUGUI spellDescription;
     public Button nextWaveButton;
-
     void Start()
     {
         nextWaveButton.onClick.AddListener(OnNextWaveClicked);
@@ -44,5 +44,10 @@ public class RewardScreenManager : MonoBehaviour
     public void OnNextWaveClicked()
     {
         GameManager.BroadcastNextWave();
+    }
+
+    public void changeSpellDescription(string newDescription)
+    {
+        spellDescription.text = "New spell: " + newDescription;
     }
 }
