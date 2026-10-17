@@ -2,7 +2,7 @@
 
 This project was made in Unity with the goal of making a game that was easily modifiable and learning how to structure large software programs. This project was modified week by week adding new changes that built off of old ones.
 
-Available to play on [itch.io]([url](https://beckgrah.itch.io/roguelikedemo))!
+Available to play on [itch.io](https://beckgrah.itch.io/roguelikedemo)!
 
 # Framework for CMPM 121
 
