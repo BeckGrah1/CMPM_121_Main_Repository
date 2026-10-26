@@ -4,6 +4,11 @@ This project was made in Unity with the goal of making a game that was easily mo
 
 Available to play on [itch.io](https://beckgrah.itch.io/roguelikedemo)!
 
+# Credits
+
+Beck Grah
+Chris "Three" Franz
+
 # Framework for CMPM 121
 
 This framework is for the class CMPM 121 - Game Development Patterns. It was developed in Unity version 6000.0.23f, but should also work in other Unity versions. 
