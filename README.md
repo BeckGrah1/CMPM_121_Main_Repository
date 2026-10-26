@@ -7,6 +7,7 @@ Available to play on [itch.io](https://beckgrah.itch.io/roguelikedemo)!
 # Credits
 
 Beck Grah
+
 Chris "Three" Franz
 
 # Framework for CMPM 121
